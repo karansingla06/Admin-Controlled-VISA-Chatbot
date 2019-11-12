@@ -32,7 +32,8 @@ def BotProcessRequest(request):
             print(response.text)
             res = {"message": "success", "data": request.data}
         elif(doc['request_type']== "delete"):
-            url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents/"+doc['intent']
+            url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents/"\
+                  +doc['intent']+"?version=2018-09-20/"
 
             headers = {
                 'content-type': "application/json",
