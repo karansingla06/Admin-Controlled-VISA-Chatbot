@@ -22,14 +22,24 @@ def BotProcessRequest(request):
         doc = request.data
         if doc['request_type']== "intent":
             url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20"
-            payload = {'intent':'kininininins','examples':[{'text':'Gosod morning'},{'text':'sHi there'}]}
+            payload = {'intent': doc['intent'],'examples':[{'text':'Gosod morning'},{'text':'sHi there'}]}
             headers = {
                 'content-type': "application/json",
                 'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
                 'cache-control': "no-cache"
             }
-
             response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
+            print(response.text)
+            res = {"message": "success", "data": request.data}
+        elif(doc['request_type']== "delete"):
+            url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents/"+doc['intent']
+
+            headers = {
+                'content-type': "application/json",
+                'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
+                'cache-control': "no-cache"
+            }
+            response = requests.request("DELETE", url, headers=headers)
             print(response.text)
             res = {"message": "success", "data": request.data}
         else:
