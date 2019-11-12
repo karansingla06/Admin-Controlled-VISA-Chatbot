@@ -20,32 +20,17 @@ def BotProcessRequest(request):
     try:
         logger.info("Request received from IBM watson")
         doc = request.data
-        print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
-        print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
-        print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
-        logger.info("asdasdsakmdsakfsakfmsakfmkasfmaskfmasfnnnjmkm878787878787878")
         if doc['request_type']== "intent":
-            # url = 'https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20'
-            # myobj = {'intent': doc['intent'], 'examples': doc['examples']}
-            # header= {"Content-Type":"application/json"}
-            # x = requests.post(url, auth= ('apikey', 'kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B'), data=myobj, headers=header)
-            # logger.info('request response ---- : ', x.content)
-
             url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20"
-
-            payload = "{\"intent\":\"kininininin\",\"examples\":[{\"text\":\"Good morning\"},{\"text\":\"Hi there\"}]}"
+            payload = {'intent':'kininininins','examples':[{'text':'Gosod morning'},{'text':'sHi there'}]}
             headers = {
                 'content-type': "application/json",
                 'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
                 'cache-control': "no-cache"
             }
 
-            print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
-
-            response = requests.request("POST", url, data=payload, headers=headers)
-
+            response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
             print(response.text)
-
             res = {"message": "success", "data": request.data}
         else:
             res = {"message": "failed", "data": request.data}
