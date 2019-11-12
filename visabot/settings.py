@@ -25,7 +25,7 @@ SECRET_KEY = '+p1xx_z+zp5$q@0p&w2j-y$pn_p$z2t5f1*cpbxsvg)nqeu7ta'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','https://botvisa.azurewebsites.net']
 
 
 # Application definition
