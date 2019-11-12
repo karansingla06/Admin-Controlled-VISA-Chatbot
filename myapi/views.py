@@ -20,6 +20,10 @@ def BotProcessRequest(request):
     try:
         logger.info("Request received from IBM watson")
         doc = request.data
+        print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
+        print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
+        print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
+        logger.info("asdasdsakmdsakfsakfmsakfmkasfmaskfmasfnnnjmkm878787878787878")
         if doc['request_type']== "intent":
             # url = 'https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20'
             # myobj = {'intent': doc['intent'], 'examples': doc['examples']}
@@ -27,17 +31,18 @@ def BotProcessRequest(request):
             # x = requests.post(url, auth= ('apikey', 'kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B'), data=myobj, headers=header)
             # logger.info('request response ---- : ', x.content)
 
-            url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents"
-            querystring = {"version": "2018-09-20"}
+            url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20"
 
-            payload = "{'intent' :'kininin1','examples': [{'text':'sssssssd dkasdmka kafakfk'}]}"
+            payload = "{\"intent\":\"kininininin\",\"examples\":[{\"text\":\"Good morning\"},{\"text\":\"Hi there\"}]}"
             headers = {
                 'content-type': "application/json",
                 'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
                 'cache-control': "no-cache"
             }
 
-            response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
+            print("000000000000asdkasmdkasfkanfjanfkjdsnfkjnajkfnajnfjasnfasfnjasfafaf")
+
+            response = requests.request("POST", url, data=payload, headers=headers)
 
             print(response.text)
 
