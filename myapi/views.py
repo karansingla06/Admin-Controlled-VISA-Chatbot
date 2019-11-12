@@ -24,7 +24,7 @@ def BotProcessRequest(request):
             url = 'https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/'
             myobj = {'intent': 'testing1'}
             header= {"Content-Type":"application/json"}
-            x = requests.post(url, auth = ('apikey', 'Basic kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B'), json=myobj, header=header)
+            x = requests.post(url, auth = ('apikey', 'Basic kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B'), json=myobj, headers=header)
             res = {"message": "success", "data": request.data}
         else:
             res = {"message": "failed", "data": request.data}
