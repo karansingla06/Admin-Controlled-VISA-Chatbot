@@ -50,20 +50,11 @@ def BotProcessRequest(request):
 
         elif(doc['request_type']== "delete"):
             print('heyyy inside delt api--------------')
-            response=service.delete_intent(workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',intent='test1').get_result()
+            response=service.delete_intent(workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent']).get_result()
             print(json.dumps(response, indent=2))
-
-            # headers = {
-            #     'content-type': "application/json",
-            #     'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
-            #     'cache-control': "no-cache"
-            # }
-            # response = requests.request("DELETE", url, headers=headers)
-            # print(response.text)
-            # res = {"message": "success", "data": request.data}
-            res = {"message": "failed", "data": request.data}
+            res = {"message": "success", "data": request.data}
         else:
-            res={'message':'else'}
+            res={'message':'failed'}
         return JsonResponse(res)
     except ValueError as e:
         return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
