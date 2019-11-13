@@ -10,9 +10,18 @@ from django.conf import settings
 import json
 import logging
 import requests
+import ibm_watson
 # Create your views here.
 
 logger = logging.getLogger(__name__)
+
+
+service=ibm_watson.AssistantV1(
+    version='2018-09-20',
+    username='apikey',
+    password="kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B",
+    url="https://gateway.watsonplatform.net/assistant/api/"
+)
 
 
 @api_view(["POST"])
@@ -31,18 +40,23 @@ def BotProcessRequest(request):
             response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
             print(response.text)
             res = {"message": "success", "data": request.data}
-        elif(doc['request_type']== "delete"):
-            url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents/"\
-                  +doc['intent']+"?version=2018-09-20/"
 
-            headers = {
-                'content-type': "application/json",
-                'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
-                'cache-control': "no-cache"
-            }
-            response = requests.request("DELETE", url, headers=headers)
-            print(response.text)
-            res = {"message": "success", "data": request.data}
+        elif(doc['request_type']== "delete"):
+            response = service.delete_intent(
+                workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',
+                intent='test1'
+            ).get_result()
+
+            print(json.dumps(response, indent=2))
+
+            # headers = {
+            #     'content-type': "application/json",
+            #     'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
+            #     'cache-control': "no-cache"
+            # }
+            # response = requests.request("DELETE", url, headers=headers)
+            # print(response.text)
+            # res = {"message": "success", "data": request.data}
         else:
             res = {"message": "failed", "data": request.data}
 

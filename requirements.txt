@@ -1,4 +1,4 @@
 django
 djangorestframework
 requests
-nano
+ibm_watson
