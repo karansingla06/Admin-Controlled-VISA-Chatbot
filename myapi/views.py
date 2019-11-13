@@ -10,18 +10,25 @@ from django.conf import settings
 import json
 import logging
 import requests
-import ibm_watson
+
+from ibm_watson import AssistantV1
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+
 # Create your views here.
 
 logger = logging.getLogger(__name__)
 
 
-service=ibm_watson.AssistantV1(
-    version='2018-09-20',
-    username='apikey',
-    password="kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B",
-    url="https://gateway.watsonplatform.net/assistant/api/"
+
+authenticator = IAMAuthenticator('kLqYFGYfATjuIYDhVmhAaBMZwQ8iz4iXqrfuk0rXL_0B')
+service = AssistantV1(
+    version='2019-02-28',
+    authenticator = authenticator
 )
+
+service.set_service_url('https://gateway.watsonplatform.net/assistant/api/')
+
+
 
 
 @api_view(["POST"])
@@ -42,10 +49,9 @@ def BotProcessRequest(request):
             res = {"message": "success", "data": request.data}
 
         elif(doc['request_type']== "delete"):
-            response = service.delete_intent(
-                workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',
-                intent='test1'
-            ).get_result()
+		print('heyyy inside delt api--------------')
+            	response=service.delete_intent(workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',intent='test1').get_result()
+
 
             print(json.dumps(response, indent=2))
 
