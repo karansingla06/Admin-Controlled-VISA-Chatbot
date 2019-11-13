@@ -45,7 +45,7 @@ def BotProcessRequest(request):
                 'cache-control': "no-cache"
             }
             response = requests.request("POST", url, data=json.dumps(payload), headers=headers)
-            print(response.text)
+            print(response)
             res = {"message": "success", "data": request.data}
 
 
@@ -55,14 +55,13 @@ def BotProcessRequest(request):
             response = service.update_intent(
                 workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent'],
                 new_examples= ast.literal_eval(doc['examples'])).get_result()
-
-            print(json.dumps(response.text, indent=2))
+	    print(response)
             res = {"message": "success", "data": request.data}
 
         elif(doc['request_type']== "delete"):
             print('heyyy inside delt api--------------')
             response=service.delete_intent(workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent']).get_result()
-            print(json.dumps(response, indent=2))
+            print(response.text, indent=2)
             res = {"message": "success", "data": request.data}
         else:
             res={'message':'failed'}
