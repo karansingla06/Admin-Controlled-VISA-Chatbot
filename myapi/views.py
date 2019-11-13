@@ -9,7 +9,7 @@ from django.core import serializers
 from django.conf import settings
 import json
 import logging
-import requests
+import requests, ast
 
 from ibm_watson import AssistantV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
@@ -38,7 +38,7 @@ def BotProcessRequest(request):
         doc = request.data
         if doc['request_type']== "intent":
             url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20"
-            payload = {'intent': doc['intent'],'examples':[{'text':'Gosod morning'},{'text':'sHi there'}]}
+            payload = {'intent': doc['intent']}
             headers = {
                 'content-type': "application/json",
                 'authorization': "Basic YXBpa2V5OmtMcVlGR1lmQVRqdUlZRGhWbWhBYUJNWndROGl6NGlYcXJmdWswclhMXzBC",
@@ -54,7 +54,7 @@ def BotProcessRequest(request):
             print(doc['examples'],type(doc['examples']))
             response = service.update_intent(
                 workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent'],
-                new_examples= [{'text': 'Good afternoon'},{'text': 'Good afdternoon'}]).get_result()
+                new_examples= ast.literal_eval(doc['examples'])).get_result()
 
             print(json.dumps(response.text, indent=2))
             res = {"message": "success", "data": request.data}
