@@ -48,6 +48,17 @@ def BotProcessRequest(request):
             print(response.text)
             res = {"message": "success", "data": request.data}
 
+
+        elif(doc['request_type'] == "update_intent"):
+            print("update intent request")
+            print(doc['examples'],type(doc['examples']))
+            response = service.update_intent(
+                workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent'],
+                new_examples= [{'text': 'Good afternoon'},{'text': 'Good afdternoon'}]).get_result()
+
+            print(json.dumps(response.text, indent=2))
+            res = {"message": "success", "data": request.data}
+
         elif(doc['request_type']== "delete"):
             print('heyyy inside delt api--------------')
             response=service.delete_intent(workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent']).get_result()
