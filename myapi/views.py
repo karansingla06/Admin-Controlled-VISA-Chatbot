@@ -91,8 +91,8 @@ def BotProcessRequest(request):
             response = service.list_logs(
                 workspace_id=workspace_id
             ).get_result()
-            print(response)
-            res = {"message": "success", "data": request.data}
+            print(response['logs'])
+            res = {"message": "success", "logs": response['logs']}
 
 
         # elif (doc['request_type'] == "entity_mentions"):
