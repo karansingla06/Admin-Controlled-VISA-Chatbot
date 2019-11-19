@@ -25,6 +25,7 @@ service = AssistantV1(
     version='2019-02-28',
     authenticator = authenticator
 )
+workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3'
 
 service.set_service_url('https://gateway.watsonplatform.net/assistant/api/')
 
@@ -36,7 +37,7 @@ def BotProcessRequest(request):
     try:
         logger.info("Request received from IBM watson")
         doc = request.data
-        if doc['request_type']== "intent":
+        if doc['request_type']== "create_intent":
             url = "https://gateway.watsonplatform.net/assistant/api/v1/workspaces/988d1327-d737-48c4-9e3e-a2e35c490db3/intents?version=2018-09-20"
             payload = {'intent': doc['intent']}
             headers = {
@@ -53,18 +54,35 @@ def BotProcessRequest(request):
             print("update intent request")
             print(doc['examples'],type(doc['examples']))
             response = service.update_intent(
-                workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent'],
+                workspace_id=workspace_id, intent=doc['intent'],
                 new_examples= ast.literal_eval(doc['examples'])).get_result()
-	    print(response)
+            print(response)
             res = {"message": "success", "data": request.data}
 
-        elif(doc['request_type']== "delete"):
+        elif(doc['request_type']== "delete_intent"):
             print('heyyy inside delt api--------------')
-            response=service.delete_intent(workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3', intent=doc['intent']).get_result()
+            response=service.delete_intent(workspace_id=workspace_id, intent=doc['intent']).get_result()
             print(response.text, indent=2)
             res = {"message": "success", "data": request.data}
+
+        elif(doc['request_type']=="create_entity"):
+            print('------------------------')
+            print(doc['entity'], doc['values'], type(doc['values']))
+            response = service.create_entity(
+                workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',
+                entity=doc['entity'],
+                values=[
+                    {'value': 'water'},
+                    {'value': 'orange juice'},
+                    {'value': 'soda'}
+                ]
+            ).get_result()
+            res = {"message": "success", "data": request.data}
+
         else:
             res={'message':'failed'}
+
         return JsonResponse(res)
+
     except ValueError as e:
         return Response(e.args[0],status.HTTP_400_BAD_REQUEST)
