@@ -95,6 +95,18 @@ def BotProcessRequest(request):
             res = {"message": "success", "logs": response['logs']}
 
 
+        elif(doc['request_type'] == "create_dialog"):
+            print(doc['user_input'])
+            response = service.create_dialog_node(
+                workspace_id= workspace_id,
+                dialog_node= doc['df_id'],
+                conditions=doc['user_input'][0],
+                title=doc['user_input'][1]
+            ).get_result()
+            print(response)
+            res = {"message": "success"}
+
+
         # elif (doc['request_type'] == "entity_mentions"):
         #     print('------------------------')
         #     print(doc['entity'], doc['values'], type(doc['values']))
