@@ -87,7 +87,7 @@ def BotProcessRequest(request):
 
 
 
-        elif(doc['request_tyoe'] == "logs"):
+        elif(doc['request_type'] == "logs"):
             response = service.list_logs(
                 workspace_id=workspace_id
             ).get_result()
