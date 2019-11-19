@@ -56,7 +56,6 @@ def BotProcessRequest(request):
             response = service.update_intent(
                 workspace_id=workspace_id, intent=doc['intent'],
                 new_examples= ast.literal_eval(doc['examples'])).get_result()
-            print(response)
             res = {"message": "success", "data": request.data}
 
         elif(doc['request_type']== "delete_intent"):
@@ -69,7 +68,7 @@ def BotProcessRequest(request):
             print('------------------------')
             print(doc['entity'], doc['values'], type(doc['values']))
             response = service.create_entity(
-                workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',
+                workspace_id=workspace_id,
                 entity=doc['entity'],
                 values=[
                     {'value': 'water'},
@@ -78,6 +77,29 @@ def BotProcessRequest(request):
                 ]
             ).get_result()
             res = {"message": "success", "data": request.data}
+
+        elif (doc['request_type'] == "delete_entity"):
+            print('------------------------')
+            print(doc['entity'])
+            response = service.delete_entity(
+                workspace_id=workspace_id,
+                entity=doc['entity']
+            ).get_result()
+            res = {"message": "success", "data": request.data}
+
+        # elif (doc['request_type'] == "entity_mentions"):
+        #     print('------------------------')
+        #     print(doc['entity'], doc['values'], type(doc['values']))
+        #     response = service.create_entity(
+        #         workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',
+        #         entity=doc['entity'],
+        #         values=[
+        #             {'value': 'water'},
+        #             {'value': 'orange juice'},
+        #             {'value': 'soda'}
+        #         ]
+        #     ).get_result()
+        #     res = {"message": "success", "data": request.data}
 
         else:
             res={'message':'failed'}
