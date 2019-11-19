@@ -67,14 +67,13 @@ def BotProcessRequest(request):
         elif(doc['request_type']=="create_entity"):
             print('------------------------')
             print(doc['entity'], doc['values'], type(doc['values']))
+            values=[]
+            for val in doc['values']:
+                values.append({'value': val})
             response = service.create_entity(
                 workspace_id=workspace_id,
                 entity=doc['entity'],
-                values=[
-                    {'value': 'water'},
-                    {'value': 'orange juice'},
-                    {'value': 'soda'}
-                ]
+                values=values
             ).get_result()
             res = {"message": "success", "data": request.data}
 
