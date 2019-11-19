@@ -84,7 +84,16 @@ def BotProcessRequest(request):
                 workspace_id=workspace_id,
                 entity=doc['entity']
             ).get_result()
+
+
+
+        elif(doc['request_tyoe'] == "logs"):
+            response = service.list_logs(
+                workspace_id=workspace_id
+            ).get_result()
+            print(response)
             res = {"message": "success", "data": request.data}
+
 
         # elif (doc['request_type'] == "entity_mentions"):
         #     print('------------------------')
