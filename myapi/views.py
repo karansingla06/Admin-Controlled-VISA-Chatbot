@@ -100,7 +100,7 @@ def BotProcessRequest(request):
                 workspace_id=workspace_id
             ).get_result()
             print(response)
-            res = {"message": "success", "dialog_nodes": response['dialog_nodesgit ']}
+            res = {"message": "success", "dialog_nodes": response['dialog_nodes']}
 
         elif(doc['request_type'] == "create_dialog"):
             print(doc['user_input'])
