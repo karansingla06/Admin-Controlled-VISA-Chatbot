@@ -98,9 +98,11 @@ def BotProcessRequest(request):
         elif (doc['request_type'] == "fetch"):
             print('inside fetch dialogs ----------------------------')
             response = service.list_dialog_nodes(
-                workspace_id=workspace_id
+                workspace_id=workspace_id,
+                page_limit=2
             ).get_result()
-            print(response)
+            print("-----------")
+            print(response.code)
             res = {"message": "success", "dialog_nodes": response['dialog_nodes']}
 
 
@@ -123,19 +125,7 @@ def BotProcessRequest(request):
             print(response)
             res = {"message": "success"}
 
-        # elif (doc['request_type'] == "entity_mentions"):
-        #     print('------------------------')
-        #     print(doc['entity'], doc['values'], type(doc['values']))
-        #     response = service.create_entity(
-        #         workspace_id='988d1327-d737-48c4-9e3e-a2e35c490db3',
-        #         entity=doc['entity'],
-        #         values=[
-        #             {'value': 'water'},
-        #             {'value': 'orange juice'},
-        #             {'value': 'soda'}
-        #         ]
-        #     ).get_result()
-        #     res = {"message": "success", "data": request.data}
+
 
         else:
             res={'message':'failed'}
