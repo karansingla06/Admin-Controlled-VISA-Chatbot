@@ -95,12 +95,14 @@ def BotProcessRequest(request):
             res = {"message": "success", "logs": response['logs']}
 
 
-        elif (doc['request_type'] == "fetch_dialogs"):
+        elif (doc['request_type'] == "fetch"):
+            print('inside fetch dialogs ----------------------------')
             response = service.list_dialog_nodes(
                 workspace_id=workspace_id
             ).get_result()
             print(response)
             res = {"message": "success", "dialog_nodes": response['dialog_nodes']}
+
 
         elif(doc['request_type'] == "create_dialog"):
             print(doc['user_input'])
