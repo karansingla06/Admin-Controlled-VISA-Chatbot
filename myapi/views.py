@@ -95,6 +95,13 @@ def BotProcessRequest(request):
             res = {"message": "success", "logs": response['logs']}
 
 
+        elif (doc['request_type'] == "fetch_dialogs"):
+            response = service.list_dialog_nodes(
+                workspace_id='{workspace_id}'
+            ).get_result()
+            print(response)
+            res = {"message": "success", "dialog_nodes": response['dialog_nodesgit ']}
+
         elif(doc['request_type'] == "create_dialog"):
             print(doc['user_input'])
             response = service.create_dialog_node(
@@ -106,6 +113,13 @@ def BotProcessRequest(request):
             print(response)
             res = {"message": "success"}
 
+        elif (doc['request_type'] == "delete_dialog"):
+            response = service.delete_dialog_node(
+                workspace_id=workspace_id,
+                dialog_node=doc['df_id']
+            ).get_result()
+            print(response)
+            res = {"message": "success"}
 
         # elif (doc['request_type'] == "entity_mentions"):
         #     print('------------------------')
