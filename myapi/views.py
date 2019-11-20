@@ -97,7 +97,7 @@ def BotProcessRequest(request):
 
         elif (doc['request_type'] == "fetch_dialogs"):
             response = service.list_dialog_nodes(
-                workspace_id='{workspace_id}'
+                workspace_id=workspace_id
             ).get_result()
             print(response)
             res = {"message": "success", "dialog_nodes": response['dialog_nodesgit ']}
