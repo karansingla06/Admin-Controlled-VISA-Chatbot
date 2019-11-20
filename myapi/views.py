@@ -99,11 +99,11 @@ def BotProcessRequest(request):
             print('inside fetch dialogs ----------------------------')
             response = service.list_dialog_nodes(
                 workspace_id=workspace_id,
-                page_limit=2
+                page_limit=5,
+                sort="updated"
             ).get_result()
-            print("-----------")
             print(response)
-            res = {"message": "success", "dialog_nodes": response['dialog_nodes']}
+            res = {"message": "success", "dialog_nodes": response}
 
 
         elif(doc['request_type'] == "create_dialog"):
