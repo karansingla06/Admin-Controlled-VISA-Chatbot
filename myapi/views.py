@@ -32,7 +32,7 @@ service.set_service_url('https://gateway.watsonplatform.net/assistant/api/')
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'visabot/index.html')
 
 
 
