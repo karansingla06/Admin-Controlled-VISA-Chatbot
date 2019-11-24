@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from myapi import views
 from django.conf.urls import url
-
+from visabot.settings import STATIC_URL
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    url(r'^$', 'django.contrib.staticfiles.views.serve', kwargs={
+            'path': 'index.html', 'document_root': STATIC_URL}),
     url(r'^botrequest/', views.BotProcessRequest)
 ]
