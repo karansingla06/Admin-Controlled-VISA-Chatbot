@@ -31,3 +31,13 @@
 			</item>
 	</channel>
 </rss>
+
+<script src=https://assistant-web.watsonplatform.net/loadWatsonAssistantChat.js></script>
+<script>
+  window.loadWatsonAssistantChat({
+    integrationID: "bca79cc4-bf60-4a37-8ce7-455f88402dd0", // The ID of this integration.
+    region: "us-south" // The region your integration is hosted in.
+  }).then(function(instance){
+    instance.render();
+  });
+</script>

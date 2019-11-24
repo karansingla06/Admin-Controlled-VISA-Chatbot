@@ -20,6 +20,6 @@ from django.conf.urls import url
 
 
 urlpatterns = [
-    path('', views.index()),
+    path('', views.index, name='index'),
     url(r'^botrequest/', views.BotProcessRequest)
 ]
