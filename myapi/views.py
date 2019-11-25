@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
@@ -32,7 +32,7 @@ service.set_service_url('https://gateway.watsonplatform.net/assistant/api/')
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render_to_response('index.html')
 
 
 
