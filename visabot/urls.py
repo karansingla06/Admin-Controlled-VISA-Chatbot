@@ -21,6 +21,6 @@ from django.conf.urls import url
 #from visabot.settings import STATIC_URL
 
 urlpatterns = [
-    url(r'', TemplateView.as_view(template_name='index.html'), name="index"),
+    url(r'', views.index, name="index"),
     url(r'^botrequest/', views.BotProcessRequest)
 ]
