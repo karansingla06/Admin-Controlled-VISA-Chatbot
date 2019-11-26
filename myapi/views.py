@@ -31,9 +31,9 @@ service.set_service_url('https://gateway.watsonplatform.net/assistant/api/')
 
 
 
-def index(request):
-    return render_to_response('index.html')
-
+# def index(request):
+#     return render_to_response('index.html')
+#
 
 
 @api_view(["POST"])

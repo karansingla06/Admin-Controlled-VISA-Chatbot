@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="60153e74-9703-4e05-81bf-f47595c9b451" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myapi/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myapi/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visabot/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/visabot/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visabot/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/visabot/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

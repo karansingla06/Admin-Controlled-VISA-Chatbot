@@ -18,7 +18,7 @@ from django.urls import path
 from myapi import views
 from django.views.generic.base import TemplateView
 from django.conf.urls import url
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # from visabot.settings import STATIC_URL
 
 urlpatterns = [
